@@ -1,0 +1,4 @@
+#!/bin/env/python
+
+if __name__ == '__main__':
+    sys.stdout.write("This is currently a stub file\n")

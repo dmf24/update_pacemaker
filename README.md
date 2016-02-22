@@ -13,7 +13,7 @@ myservice.mydomain.com:
      10.0.0.5/24/eth1
 ```
 
-The idea being that this sacrifices the flexibility of the raw pacemaker configuration directives and gains readability and usability.  The above configuration would look like this as crm configure directives:
+The idea being that this sacrifices the flexibility of the raw pacemaker configuration directives and gains readability, usability, and safety.  The above configuration would look like this as crm configure directives:
 
 ```
 primitive myservice.mydomain.com-ip127.0.0.1 ocf:heartbeat:IPaddr2 params ip="127.0.0.1" cidr_netmask="8" nic="lo"

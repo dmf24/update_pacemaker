@@ -1,3 +1,4 @@
+# This file is not currently used
 import string
 
 def template(s):
@@ -15,8 +16,9 @@ crm_configure_templates = dict([(k, template(crm_configure_strings[k])) for k in
 def crm_configure(command, **kwargs):
     return crm_configure_templates[command](kwargs)
 
-print crm_configure('ldirectord', service_name='test.orchestraweb.med.harvard.edu', interval=15)
-print crm_configure('group', service_name='test.orchestraweb.med.harvard.edu', service_list='1 2')
-print crm_configure('location', service_name='test.orchestraweb.med.harvard.edu', index=1, value=14900, server='cobo')
-print crm_configure('ipaddr', service_name='test.orchestraweb.med.harvard.edu', ip='5.6.7.8', cidr_netmask='24',
+if __name__=='__main__':
+    print crm_configure('ldirectord', service_name='myservice.mydomain.com', interval=15)
+    print crm_configure('group', service_name='myservice.mydomain.com', service_list='1 2')
+    print crm_configure('location', service_name='myservice.mydomain.com', index=1, value=14900, server='cobo')
+    print crm_configure('ipaddr', service_name='myservice.mydomain.com', ip='5.6.7.8', cidr_netmask='24',
                     nicstring='')

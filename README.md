@@ -1,5 +1,5 @@
 # update_pacemaker
-Helper scripts for configuring pacemaker resources.
+Helper scripts for configuring pacemaker resources.  Written for use with pacemaker version: 1.0.9.  (On debian squeeze using the heartbeat stack, though that should not be relevant)
 
 These scripts implement only a subset of pacemaker functionality and are not intended to be a drop-in replacement for the existing command-line interface.
 

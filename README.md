@@ -9,9 +9,22 @@ This tool allows you to define pacemaker resources in a file with stanzas that l
 myservice.mydomain.com:
      ldirectord
      [loadbalancer1 loadbalancer2]
-     120.0.0.1/8/lo
+     127.0.0.1/8/lo
+     10.0.0.5/24/eth1
 ```
 
+The idea being that this sacrifices the flexibility of the raw pacemaker configuration directives and gains readability and usability.  The above configuration would look like this as crm configure directives:
+
+```
+primitive myservice.mydomain.com-ip127.0.0.1 ocf:heartbeat:IPaddr2 params ip="127.0.0.1" cidr_netmask="8" nic="lo"
+primitive myservice.mydomain.com-ip10.0.0.5 ocf:heartbeat:IPaddr2 params ip="10.0.0.5" cidr_netmask="24" nic="eth1"
+primitive myservice.mydomain.com-ld lsb:ldirectord-myservice.mydomain.com
+group myservice.mydomain.com myservice.mydomain.com-ip127.0.0.1 myservice.mydomain.com-ip10.0.0.5 myservice.mydomain.com-ld
+location myservice.mydomain.com-ha0 myservice.mydomain.com 15000: loadbalancer1
+location myservice.mydomain.com-ha1 myservice.mydomain.com 14900: loadbalancer2
+```
+
+The tool's help:
 
 ```
 usage: update_pacemaker [-h] [-a] [-q] [-u] [-d] [-c]
